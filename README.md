@@ -1,38 +1,30 @@
-# m122_projekt
+# Crypto
 
-Du dumme Arschgeige ich schieb dir die röhre rein und esse deinen kuchen.
+Zeigt Crypto Marktdaten an.
 
-## Installation
+## Auftraggeber
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Parisi Corrado
 
-```bash
-pip install foobar
-```
+## Projektbeginn
 
-## Usage
+14.06.2024
 
-```python
-import foobar
+## Projektende/-abgabe
 
-# returns 'words'
-foobar.pluralize('word')
+19.07.2024 (?)
 
-# returns 'geese'
-foobar.pluralize('goose')
+## Beschreibung
 
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
+Zeigt mithilfe der CoinMarketCap API verschiedene Marktdaten einer Cryptowährung der Wahl an.
 
-## Contributing
+## Projektteam
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+- Marzo Nevio
+- Reichlin David
 
-Please make sure to update tests as appropriate.
+## Annahmen und Beschränkungen
 
-<<<<<<< HEAD
 - Anzahl der API Abfragen auf 10'000 beschränkt
 - Keine kostenpflichtige API Services
 
@@ -42,5 +34,6 @@ Please make sure to update tests as appropriate.
 |-----------------|-----------------------------------------|
 | 14.06.          | Abgabe Projektantrag                    |
 | 28.06.          | Abgabe Design (Aktivitätsdiagramm)      |
-| 12.07. / 19.07. | Projektdemo & Abgabe Code mit Kommentar |
-| 12.07. / 19.07. | Abgabe: Testbericht und Dokumentation   |
+| 12.06. / 19.06. | Projektdemo & Abgabe Code mit Kommentar |
+| 12.06. / 19.06. | Abgabe: Testbericht und Dokumentation   |
+
