@@ -5,7 +5,6 @@ import json
 
 class GetData:
     def __init__(self, cr):
-        print(cr)
         url = 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
         parameters = {
             'start': '1',
