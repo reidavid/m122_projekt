@@ -9,8 +9,7 @@ class Window(Tk):
         hs = self.winfo_screenheight()
         x = (ws / 2) - (w / 2)
         y = (hs / 2) - (h / 2)
+
         self.geometry('%dx%d+%d+%d' % (w, h, x, y))
         self.resizable(False, False)
 
-
-Window("hallo", 350, 200)

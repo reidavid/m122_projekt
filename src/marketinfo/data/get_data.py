@@ -4,7 +4,8 @@ import json
 
 
 class GetData:
-    def __init__(self):
+    def __init__(self, cr):
+        print(cr)
         url = 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
         parameters = {
             'start': '1',
@@ -21,7 +22,6 @@ class GetData:
 
         try:
             response = session.get(url, params=parameters)
-            data = json.loads(response.text)
-            return data
+            self.data = json.loads(response.text)
         except (ConnectionError, Timeout, TooManyRedirects) as e:
             print(e)
