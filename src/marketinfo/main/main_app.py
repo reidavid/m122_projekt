@@ -8,7 +8,7 @@ from src.marketinfo.window import Window
 
 class MainApp(Window):
     def __init__(self):
-        super().__init__("name", 500, 400)
+        super().__init__("MarketInfo", 500, 400)
         self.attributes("-topmost", 1)
 
         # colors
@@ -29,6 +29,7 @@ class MainApp(Window):
         crypto = StringVar()
         crypto.set("Select Currency")
 
+        # Widgets
         self.drop = OptionMenu(self, crypto, *options)
         self.drop["bg"]=secondary
         self.drop["fg"]=secondary_fg
