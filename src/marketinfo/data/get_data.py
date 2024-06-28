@@ -1,34 +1,34 @@
-from requests import Session
-from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
+import requests
 import json
-from pprint import *
 
 
 class GetData:
-    def __init__(self, cr):
+    def __init__(self):
 
-        # Read API-Key
-        with open('C:/Users/rda.ADEON/Documents/git/module/m122_proj/SECRET_KEY') as f:
+        with open("C:/Users/reich/IdeaProjects/m122_projekt/src/CREDENTIALS.json") as f:
             d = json.load(f)
 
-        url = 'https://pro-api.coinmarketcap.com/cryptocurrency/listing/map'
+        api_key = d['SECRET_KEY']
+        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+
         parameters = {
-            # 'start': '1',
-            # 'limit': '5000',
-            # 'symbol': cr,
-            # 'convert': 'USD'
+            'start': '1',
+            'limit': '10',
+            'convert': 'CHF'  # Change the currency to CHF
         }
+
         headers = {
             'Accepts': 'application/json',
-            'X-CMC_PRO_API_KEY': d['SECRET_KEY']
+            'X-CMC_PRO_API_KEY': api_key,
         }
 
-        session = Session()
-        session.headers.update(headers)
+        response = requests.get(url, headers=headers, params=parameters)
+        data = response.json()
 
-        try:
-            response = session.get(url, params=parameters)
-            self.data = json.loads(response.text)
-            print(self.data)
-        except (ConnectionError, Timeout, TooManyRedirects) as e:
-            print(e)
+        self.formatted_data = ""
+
+        for currency in data['data']:
+            self.formatted_data += f"Name: {currency['name']}/n"
+            self.formatted_data += f"Symbol: {currency['symbol']}/n"
+            self.formatted_data += f"Price: {currency['quote']['CHF']['price']:.2f} CHF/n"
+            self.formatted_data += '---/n'
