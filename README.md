@@ -42,10 +42,5 @@ Please make sure to update tests as appropriate.
 |-----------------|-----------------------------------------|
 | 14.06.          | Abgabe Projektantrag                    |
 | 28.06.          | Abgabe Design (Aktivitätsdiagramm)      |
-| 12.06. / 19.06. | Projektdemo & Abgabe Code mit Kommentar |
-| 12.06. / 19.06. | Abgabe: Testbericht und Dokumentation   |
-
-
-
-=======
->>>>>>> c87e66a93a32e46e73f762dc16bfb5d29b1d37fa
+| 12.07. / 19.07. | Projektdemo & Abgabe Code mit Kommentar |
+| 12.07. / 19.07. | Abgabe: Testbericht und Dokumentation   |
