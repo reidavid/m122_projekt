@@ -7,7 +7,7 @@ import json
 class SendMail:
     def __init__(self, data):
 
-        with open("C:/Users/reich/IdeaProjects/m122_projekt/src/CREDENTIALS.json") as f:
+        with open("C:/Users/rda.ADEON/Documents/git/module/m122_proj/src/CREDENTIALS.json") as f:
             d = json.load(f)
 
         email_address = d['EMAIL_ADDRESS']
