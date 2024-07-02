@@ -36,9 +36,9 @@ for currency in data['data']:
 print(formatted_data)
 
 # E-Mail credentials (should be stored securely, not in plain text)
-email_address = "m122projekt@gmail.com"
-email_password = "vkkt syog uxnl gixq "
-recipient_address = "neviomarzo.07@gmail.com"
+email_address = "*"
+email_password = "*"
+recipient_address = "*"
 
 # creates SMTP session
 s = smtplib.SMTP('smtp.gmail.com', 587)
