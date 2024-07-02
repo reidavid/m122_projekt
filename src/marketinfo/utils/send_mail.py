@@ -5,14 +5,11 @@ import json
 
 
 class SendMail:
-    def __init__(self, data):
+    def __init__(self, cred, data):
 
-        with open("C:/Users/rda.ADEON/Documents/git/module/m122_proj/src/CREDENTIALS.json") as f:
-            d = json.load(f)
-
-        email_address = d['EMAIL_ADDRESS']
-        email_password = d['EMAIL_PASSWORD']
-        recipient_address = d['RECIPIENT_ADDRESS']
+        email_address = cred['EMAIL_ADDRESS']
+        email_password = cred['EMAIL_PASSWORD']
+        recipient_address = cred['RECIPIENT_ADDRESS']
 
         # SMTP session
         s = smtplib.SMTP('smtp.gmail.com', 587)
