@@ -1,6 +1,8 @@
-# Crypto
+# CryptoAnalytics
 
 Zeigt Crypto Marktdaten an.
+
+# Projektangaben
 
 ## Auftraggeber
 
@@ -16,7 +18,7 @@ Parisi Corrado
 
 ## Beschreibung
 
-Zeigt mithilfe der CoinMarketCap API verschiedene Marktdaten einer Cryptowährung der Wahl an.
+Zeigt mithilfe der CoinMarketCap API verschiedene Marktdaten einer Kryptowährung der Wahl an.
 
 ## Projektteam
 
@@ -37,3 +39,26 @@ Zeigt mithilfe der CoinMarketCap API verschiedene Marktdaten einer Cryptowährun
 | 12.06. / 19.06. | Projektdemo & Abgabe Code mit Kommentar |
 | 12.06. / 19.06. | Abgabe: Testbericht und Dokumentation   |
 
+# Features
+
+- Kriegt verschiedene Kryptowährung-Informationen mit der CoinMarketAPI.
+- Versendet Daten per Mail an benutzerdefinierte Empfänger.
+- Daten die per Mails verschickt werden, werden formatiert für leserlichkeit und Übersicht.
+- Mails können an mehreren Empfängern versendet werden.
+- Wichtige Daten / Credentials werden extern gespeichert.
+- Die Anzahl Währungen, von denen Daten geholt werden, kann mit Parametern angepasst werden.
+
+# Showcase
+
+Crypto Analytics benutzt die CoinMarketCap API, um aktuelle Informationen der Kryptowährungen anzuzeigen. Diese werden
+dann formatiert und per Mail versendet.
+
+Die Mail sieht wie folgt aus:
+
+| ![KryptoInfo.png](src/assets/img/KryptoInfo.png) |
+|:------------------------------------------------:|
+|               Krypto Informationen               |
+
+# License
+
+Dieses Programm steht unter der [GNU General Public License v3.0](LICENSE)
