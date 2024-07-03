@@ -3,14 +3,14 @@ import json
 
 
 class GetData:
-    def __init__(self, cred, limit):
+    def __init__(self, cred, limit=10):
         api_key = cred['SECRET_KEY']
         url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
 
         parameters = {
             'start': '1',
             'limit': limit,
-            'convert': 'CHF'  # Change the currency to CHF
+            'convert': 'CHF'
         }
 
         headers = {
@@ -21,13 +21,12 @@ class GetData:
         response = requests.get(url, headers=headers, params=parameters)
         data = response.json()
 
-        self.formatted_data = ""
+        self.formatted_data = ""  # wird in Mail und PDF benutzt
 
         self.FormatData(data)
 
     def FormatData(self, data):
-
-        self.formatted_data += "<body><h1>Hier sind deine Kryptowährung Informationen!</h1>"
+        self.formatted_data += "<h1>Hier sind deine Krypto Informationen</h1>"
 
         for currency in data['data']:
             self.formatted_data += \
@@ -43,5 +42,3 @@ class GetData:
                     <p><b>Circulating Supply:</b> {currency['circulating_supply']:.2f} CHF</p>
                 </div>
                 """
-
-        self.formatted_data += "</body>"

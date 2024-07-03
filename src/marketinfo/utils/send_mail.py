@@ -22,7 +22,7 @@ class SendMail:
         msg = MIMEMultipart()
         msg['From'] = email_address
         msg['To'] = ", ".join(recipient_address)
-        msg['Subject'] = "Hier sind deine Krytpo Informationen"
+        msg['Subject'] = "Hier sind deine Krypto Informationen"
 
         # body of the email
         body = data
