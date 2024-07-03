@@ -26,7 +26,7 @@ class SendMail:
 
         # body of the email
         body = data
-        msg.attach(MIMEText(body, 'plain'))
+        msg.attach(MIMEText(body, 'html'))
 
         # send mail
         s.sendmail(msg['From'], msg['To'], msg.as_string())

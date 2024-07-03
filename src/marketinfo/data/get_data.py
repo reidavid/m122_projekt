@@ -23,13 +23,25 @@ class GetData:
 
         self.formatted_data = ""
 
+        self.FormatData(data)
+
+    def FormatData(self, data):
+
+        self.formatted_data += "<body>"
+
         for currency in data['data']:
-            self.formatted_data += f"Name: {currency['name']}\n"
-            self.formatted_data += f"Symbol: {currency['symbol']}\n"
-            self.formatted_data += f"Price: {currency['quote']['CHF']['price']:.2f} CHF\n"
-            self.formatted_data += f"Volume Change in the last 24h: {currency['quote']['CHF']['volume_change_24h']:.2f} CHF\n"
-            self.formatted_data += f"% Change in the last 24h: {currency['quote']['CHF']['percent_change_24h']:.2f} CHF\n"
-            self.formatted_data += f"% Change in the last month: {currency['quote']['CHF']['percent_change_30d']:.2f} CHF\n"
-            self.formatted_data += f"Market Cap: {currency['quote']['CHF']['market_cap']:.2f} CHF\n"
-            self.formatted_data += f"Circulating Supply: {currency['circulating_supply']:.2f} CHF\n"
-            self.formatted_data += '---\n'
+            self.formatted_data += \
+                f"""
+                <div style="padding:20px; color:powderblue; border-radius:25px;>
+                    <h2>Name: {currency['name']}</h2>
+                    <p><b>Symbol:</b> {currency['symbol']}</p>
+                    <p><b>Price:</b> {currency['quote']['CHF']['price']:.2f} CHF</p>
+                    <p><b>Volume Change in the last 24h:</b> {currency['quote']['CHF']['volume_change_24h']:.2f} CHF</p>
+                    <p><b>% Change in the last 24h:</b> {currency['quote']['CHF']['percent_change_24h']:.2f} CHF</p>
+                    <p><b>% Change in the last month:</b> {currency['quote']['CHF']['percent_change_30d']:.2f} CHF</p>
+                    <p><b>Market Cap:</b> {currency['quote']['CHF']['market_cap']:.2f} CHF</p>
+                    <p><b>Circulating Supply:</b> {currency['circulating_supply']:.2f} CHF</p>
+                </div>
+                """
+
+        self.formatted_data += "</body>"
