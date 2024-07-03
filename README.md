@@ -39,6 +39,10 @@ Zeigt mithilfe der CoinMarketCap API verschiedene Marktdaten einer Kryptowährun
 | 12.06. / 19.06. | Projektdemo & Abgabe Code mit Kommentar |
 | 12.06. / 19.06. | Abgabe: Testbericht und Dokumentation   |
 
+# Dependencies
+
+- [wkhtmltopdf](https://wkhtmltopdf.org/)
+
 # Features
 
 - Kriegt verschiedene Kryptowährung-Informationen mit der CoinMarketAPI.
