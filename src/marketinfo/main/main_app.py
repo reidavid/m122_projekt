@@ -11,6 +11,5 @@ class MainApp:
 
         data = GetData(cred, sys.argv[1]).formatted_data
 
-        # Mail senden
         SendMail(cred, data)
-        # ConvertPDF(data)
+        ConvertPDF(data)

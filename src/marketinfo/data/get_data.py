@@ -27,12 +27,12 @@ class GetData:
 
     def FormatData(self, data):
 
-        self.formatted_data += "<body>"
+        self.formatted_data += "<body><h1>Hier sind deine Kryptowährung Informationen!</h1>"
 
         for currency in data['data']:
             self.formatted_data += \
                 f"""
-                <div style="padding:20px; color:powderblue; border-radius:25px;>
+                <div style="padding:20px; margin:30px; background-color: lightblue; border-radius:25px;>
                     <h2>Name: {currency['name']}</h2>
                     <p><b>Symbol:</b> {currency['symbol']}</p>
                     <p><b>Price:</b> {currency['quote']['CHF']['price']:.2f} CHF</p>
