@@ -31,14 +31,38 @@ class GetData:
         for currency in data['data']:
             self.formatted_data += \
                 f"""
-                <div style="padding:20px; margin:30px; background-color: lightblue; border-radius:25px;>
-                    <h2>Name: {currency['name']}</h2>
-                    <p><b>Symbol:</b> {currency['symbol']}</p>
-                    <p><b>Price:</b> {currency['quote']['CHF']['price']:.2f} CHF</p>
-                    <p><b>Volume Change in the last 24h:</b> {currency['quote']['CHF']['volume_change_24h']:.2f} CHF</p>
-                    <p><b>% Change in the last 24h:</b> {currency['quote']['CHF']['percent_change_24h']:.2f} CHF</p>
-                    <p><b>% Change in the last month:</b> {currency['quote']['CHF']['percent_change_30d']:.2f} CHF</p>
-                    <p><b>Market Cap:</b> {currency['quote']['CHF']['market_cap']:.2f} CHF</p>
-                    <p><b>Circulating Supply:</b> {currency['circulating_supply']:.2f} CHF</p>
-                </div>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <td>{currency['name']}</td>
+                    </tr>
+                    <tr>
+                        <th>Symbol</th>
+                        <td>{currency['symbol']}</td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>{currency['quote']['CHF']['price']:.2f} CHF</td>
+                    </tr>
+                    <tr>
+                        <th>Volume Change in the last 24h</th>
+                        <td>{currency['quote']['CHF']['volume_change_24h']:.2f} CHF</td>
+                    </tr>
+                    <tr>
+                        <th>% Change in the last 24h</th>
+                        <td>{currency['quote']['CHF']['percent_change_24h']:.2f} CHF</td>
+                    </tr>
+                    <tr>
+                        <th>% Change in the last month</th>
+                        <td>{currency['quote']['CHF']['percent_change_30d']:.2f} CHF</td>
+                    </tr>
+                    <tr>
+                        <th>Market Cap</th>
+                        <td>{currency['quote']['CHF']['market_cap']:.2f} CHF</td>
+                    </tr>
+                    <tr>
+                        <th>Circulating Supply</th>
+                        <td>{currency['circulating_supply']:.2f} CHF</td>
+                    </tr>
+                </table>
                 """

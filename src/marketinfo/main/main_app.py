@@ -1,11 +1,12 @@
 import sys
 from src.marketinfo.data.get_data import GetData
-from src.marketinfo.utils import *
+from src.marketinfo.utils.send_mail import *
+from src.marketinfo.utils.convert_pdf import *
 
 
 class MainApp:
     def __init__(self):
-        with open("src/CREDENTIALS.json") as f:
+        with open("CREDENTIALS.json") as f:
             cred = json.load(f)
 
         # API Call mit externer JSON Datei und Skriptparameter als Limit
