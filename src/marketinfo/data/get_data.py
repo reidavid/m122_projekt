@@ -1,9 +1,13 @@
 import requests
-import json
+from ..utils.logging import *
 
 
 class GetData:
     def __init__(self, cred, limit=10):
+        logger = InitLog().logger
+
+        logger.error("test")
+
         api_key = cred['SECRET_KEY']
         url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
 
@@ -18,7 +22,11 @@ class GetData:
             'X-CMC_PRO_API_KEY': api_key,
         }
 
-        response = requests.get(url, headers=headers, params=parameters)
+        try:
+            response = requests.get(url, headers=headers, params=parameters)
+        except:
+            logger.error(f"API request an {url} fehlgeschlagen")
+
         data = response.json()
 
         self.formatted_data = ""  # wird in Mail und PDF benutzt
@@ -39,7 +47,7 @@ class GetData:
                     <tr>
                         <th>Symbol</th>
                         <td>{currency['symbol']}</td>
-                    </tr>
+                    </tr>s
                     <tr>
                         <th>Price</th>
                         <td>{currency['quote']['CHF']['price']:.2f} CHF</td>
