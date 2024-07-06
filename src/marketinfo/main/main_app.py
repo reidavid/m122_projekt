@@ -1,8 +1,8 @@
 import json
 from ..data.get_data import GetData
-from ..utils.send_mail import *
-from ..utils.convert_pdf import *
-from ..utils.logging import *
+from ..utils.send_mail import SendMail
+from ..utils.convert_pdf import ConvertPDF
+from ..utils.logging import InitLog
 
 
 class MainApp:
