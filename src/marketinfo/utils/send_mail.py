@@ -1,22 +1,31 @@
 import smtplib
+from ..utils.logging import *
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import json
 
 
 class SendMail:
     def __init__(self, cred, data):
+        logger = InitLog().logger
 
-        email_address = cred['EMAIL_ADDRESS']
-        email_password = cred['EMAIL_PASSWORD']
-        recipient_address = cred['RECIPIENT_ADDRESS']
+        try:
+            logger.info("Getting Email Credentials...")
+            email_address = cred['EMAIL_ADDRESS']
+            email_password = cred['EMAIL_PASSWORD']
+            recipient_address = cred['RECIPIENT_ADDRESS']
+        except:
+            logger.error("Email Credentials empty")
 
         # SMTP session
         s = smtplib.SMTP('smtp.gmail.com', 587)
         # security
         s.starttls()
         # Authentication
-        s.login(email_address, email_password)
+        try:
+            logger.info("Authenticating...")
+            s.login(email_address, email_password)
+        except:
+            logger.error("Authentication failed")
 
         # message
         msg = MIMEMultipart()

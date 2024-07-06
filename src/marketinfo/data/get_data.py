@@ -3,10 +3,11 @@ from ..utils.logging import *
 
 
 class GetData:
-    def __init__(self, cred, limit=10):
-        logger = InitLog().logger
+    def __init__(self, cred, limit=None):
+        if limit is None:
+            limit = 10
 
-        logger.error("test")
+        logger = InitLog().logger
 
         api_key = cred['SECRET_KEY']
         url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
@@ -24,7 +25,7 @@ class GetData:
 
         try:
             response = requests.get(url, headers=headers, params=parameters)
-        except:
+        except requests.exceptions.ConnectionError:
             logger.error(f"API request an {url} fehlgeschlagen")
 
         data = response.json()
