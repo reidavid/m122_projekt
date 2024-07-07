@@ -22,5 +22,5 @@ class MainApp:
         # API Call mit externer JSON Datei und Skriptparameter als Limit
         data = GetData(cred, sys.argv[1]).formatted_data
 
-        SendMail(cred, data)
         ConvertPDF(data)
+        SendMail(cred, data)

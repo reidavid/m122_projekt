@@ -1,11 +1,14 @@
 import smtplib
+import os
 from ..utils.logging import *
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 
 class SendMail:
-    def __init__(self, cred, data):
+    def __init__(self, cred, data, attachment_path="/home/nevio/m122_projekt/src/_test.pdf"):
         logger = InitLog().logger
 
         try:
@@ -36,6 +39,20 @@ class SendMail:
         # body of the email
         body = data
         msg.attach(MIMEText(body, 'html'))
+
+        # attach file
+        if attachment_path:
+            attachment = open(attachment_path, "rb")
+
+            part = MIMEBase('application', 'octet-stream')
+            part.set_payload(attachment.read())
+            encoders.encode_base64(part)
+
+            # Extract filename from the path and use it in the header
+            filename = os.path.basename(attachment_path)
+            part.add_header('Content-Disposition', f'attachment; filename={filename}')
+
+            msg.attach(part)
 
         # send mail
         s.sendmail(msg['From'], msg['To'], msg.as_string())
