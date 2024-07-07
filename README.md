@@ -1,6 +1,6 @@
 # CryptoAnalytics
 
-[LOGO]
+![CA Logo](src/assets/CA.png)
 
 # TOC
 
@@ -138,9 +138,8 @@ if __name__ == "__main__":
 Hier werden alle benötigten Klassen / Funktionen für das Programm aufgerufen. Zusätzlich werden die Credentials in einer
 externen JSON-Datei gespeichert und hier abgelesen, sodass ihre Werte weitergegeben werden können.
 
-Auch wird ein Parameter (sys.argv) abgelesen und als "limit" an [GetData](#daten-einholen) weitergegeben. Limit
-bezeichnet die Anzahl der
-Kryptowährungen, von denen Informationen geholt werden.
+Auch wird ein Parameter (sys.argv) abgelesen und als "limit" an [GetData](#daten-einholen) weitergegeben. Dieser
+Parameter bezeichnet die Anzahl der Kryptowährungen, von denen Informationen geholt werden.
 
 ```python
 import json
@@ -167,18 +166,15 @@ class MainApp:
         # API Call mit externer JSON Datei und Skriptparameter als Limit
         data = GetData(cred, sys.argv[1]).formatted_data
 
-        SendMail(cred, data)
         ConvertPDF(data)
+        SendMail(cred, data)
 ```
 
 ## Daten
 
 ### Daten einholen
 
-Mithilfe der CoinMarketCap API werden allesamt Daten der Kryptowährungen eingeholt. Zusätzlich werden diese in
-HTML-Format formatiert und als Variable gespeichert, sodass sie in der [SendMail](#mail-senden)
-und [ConvertPDF](#pdf-konvertieren) Klassen verwendet werden
-können.
+Mithilfe der CoinMarketCap API werden allesamt Daten der Kryptowährungen eingeholt und in einer Variable gespeichert.
 
 ```python
 import requests
@@ -216,48 +212,57 @@ class GetData:
         self.formatted_data = ""  # wird in Mail und PDF benutzt
 
         self.FormatData(data)
+```
 
-    def FormatData(self, data):
+#### Daten Formatieren
+
+Die eingeholten Daten werden in HTML-Format formatiert und als Variable gespeichert, sodass sie in
+der [SendMail](#mail-senden) und [ConvertPDF](#pdf-konvertieren) Klassen verwendet werden können.
+
+```python
+        def FormatData(self, data):
+    
+    
         self.formatted_data += "<h1>Hier sind deine Krypto Informationen</h1>"
-
+    
         for currency in data['data']:
             self.formatted_data +=
             f"""
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <td>{currency['name']}</td>
-                    </tr>
-                    <tr>
-                        <th>Symbol</th>
-                        <td>{currency['symbol']}</td>
-                    </tr>s
-                    <tr>
-                        <th>Price</th>
-                        <td>{currency['quote']['CHF']['price']:.2f} CHF</td>
-                    </tr>
-                    <tr>
-                        <th>Volume Change in the last 24h</th>
-                        <td>{currency['quote']['CHF']['volume_change_24h']:.2f} CHF</td>
-                    </tr>
-                    <tr>
-                        <th>% Change in the last 24h</th>
-                        <td>{currency['quote']['CHF']['percent_change_24h']:.2f} CHF</td>
-                    </tr>
-                    <tr>
-                        <th>% Change in the last month</th>
-                        <td>{currency['quote']['CHF']['percent_change_30d']:.2f} CHF</td>
-                    </tr>
-                    <tr>
-                        <th>Market Cap</th>
-                        <td>{currency['quote']['CHF']['market_cap']:.2f} CHF</td>
-                    </tr>
-                    <tr>
-                        <th>Circulating Supply</th>
-                        <td>{currency['circulating_supply']:.2f} CHF</td>
-                    </tr>
-                </table>
-                """
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>{currency['name']}</td>
+                </tr>
+                <tr>
+                    <th>Symbol</th>
+                    <td>{currency['symbol']}</td>
+                </tr>s
+                <tr>
+                    <th>Price</th>
+                    <td>{currency['quote']['CHF']['price']:.2f} CHF</td>
+                </tr>
+                <tr>
+                    <th>Volume Change in the last 24h</th>
+                    <td>{currency['quote']['CHF']['volume_change_24h']:.2f} CHF</td>
+                </tr>
+                <tr>
+                    <th>% Change in the last 24h</th>
+                    <td>{currency['quote']['CHF']['percent_change_24h']:.2f} CHF</td>
+                </tr>
+                <tr>
+                    <th>% Change in the last month</th>
+                    <td>{currency['quote']['CHF']['percent_change_30d']:.2f} CHF</td>
+                </tr>
+                <tr>
+                    <th>Market Cap</th>
+                    <td>{currency['quote']['CHF']['market_cap']:.2f} CHF</td>
+                </tr>
+                <tr>
+                    <th>Circulating Supply</th>
+                    <td>{currency['circulating_supply']:.2f} CHF</td>
+                </tr>
+            </table>
+            """
 ```
 
 ## Dienstprogramme
@@ -270,13 +275,16 @@ eingeholt.
 
 ```python
 import smtplib
+import os
 from ..utils.logging import *
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 
 class SendMail:
-    def __init__(self, cred, data):
+    def __init__(self, cred, data, attachment_path="/home/nevio/m122_projekt/src/_test.pdf"):
         logger = InitLog().logger
 
         try:
@@ -308,6 +316,20 @@ class SendMail:
         body = data
         msg.attach(MIMEText(body, 'html'))
 
+        # attach file
+        if attachment_path:
+            attachment = open(attachment_path, "rb")
+
+            part = MIMEBase('application', 'octet-stream')
+            part.set_payload(attachment.read())
+            encoders.encode_base64(part)
+
+            # Extract filename from the path and use it in the header
+            filename = os.path.basename(attachment_path)
+            part.add_header('Content-Disposition', f'attachment; filename={filename}')
+
+            msg.attach(part)
+        
         # send mail
         s.sendmail(msg['From'], msg['To'], msg.as_string())
         s.quit()
@@ -356,6 +378,10 @@ Mit diesem Code werden die in HTML formatierten Daten in [GetData](#daten-einhol
 pdfkit. Hierfür wird wkhtmltopdf benötigt, ein webkit welches HTML zu PDF rendern kann. Damit diese Umwandlung
 erfolgreich ist, sollte der absolute Pfad von wkhtmltopdf eingegeben werden.
 
+Für das "verschönern" der HTML-Daten wurde auch eine CSS-Datei bestimmt.
+
+> Der Pfad zu wkhtmltopdf sollte je nach Plattform angepasst werden
+
 ```python
 import pdfkit
 from ..utils.logging import *
@@ -369,13 +395,28 @@ class ConvertPDF:
         css = "assets/css.css"
 
         # Pfad zu wkhtmltopdf
-        config = pdfkit.configuration(wkhtmltopdf="C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe")
+        config = pdfkit.configuration(wkhtmltopdf="/usr/bin/wkhtmltopdf")
         # PDF erstellen
         try:
             pdfkit.from_string(data, self.pdf, configuration=config, css=css)
         except:
             logger.error("Failed to convert String to PDF")
 ```
+
+# Projekt Reflexion
+
+Dieses Projekt hat unser Python Wissen, von dem wir anfänglich dieses Projekts nicht viel hatten herausgefordert und
+erweitert. Grundsätzlich haben wir viel über Grundkonzepte von Python gelernt, wie zum Beispiel Klassen und wie man
+diese anwendet. Auch haben wir gelernt, wie man Mails versendet, PDFs versendet und, am wichtigsten, API Requests macht.
+Zugegeben hatten wir jedoch ein kleines bisschen Vorwissen über API, aber wir haben noch nie etwas mit der CoinMarketCap
+API angefangen.
+
+Wir wollten eine gute Projektstruktur haben und nicht alles in einem Skript verschachteln, also haben wir uns ein
+Beispiel am [PyMacro Repository](https://github.com/LOUDO56/PyMacroRecord/tree/main/src) genommen. Dieses führt den
+gesamten Code mit einer Funktion aus, die wie in unserem Projekt in einem File namens "main" aufgerufen wird.
+
+Nach diesem Python Projekt haben wir bemerkt, dass Python eine recht simple und logische Programmiersprache. Die meiste
+Zeit haben wir unseren Code verstanden und nur selten mussten wir für Hilfe suchen.
 
 # License
 
