@@ -3,32 +3,34 @@
 ![CA Logo](src/assets/CA.png)
 
 <!-- TOC -->
+
 * [CryptoAnalytics](#cryptoanalytics)
 * [Projektangaben](#projektangaben)
-  * [Auftraggeber](#auftraggeber)
-  * [Projektbeginn](#projektbeginn)
-  * [Projektende/-abgabe](#projektende-abgabe)
-  * [Beschreibung](#beschreibung)
-  * [Projektteam](#projektteam)
-  * [Annahmen und Beschränkungen](#annahmen-und-beschränkungen)
-  * [Terminvorgaben](#terminvorgaben)
+   * [Auftraggeber](#auftraggeber)
+   * [Projektbeginn](#projektbeginn)
+   * [Projektende/-abgabe](#projektende-abgabe)
+   * [Beschreibung](#beschreibung)
+   * [Projektteam](#projektteam)
+   * [Annahmen und Beschränkungen](#annahmen-und-beschränkungen)
+   * [Terminvorgaben](#terminvorgaben)
 * [Dependencies](#dependencies)
 * [Features](#features)
 * [Showcase](#showcase)
 * [Code](#code)
-  * [Struktur](#struktur)
-  * [Ausführung](#ausführung)
-    * [Main](#main)
-    * [Main App](#main-app)
-  * [Daten](#daten)
-    * [Daten einholen](#daten-einholen)
-      * [Daten Formatieren](#daten-formatieren)
-  * [Dienstprogramme](#dienstprogramme)
-    * [Mail senden](#mail-senden)
-    * [Logging](#logging)
-    * [PDF konvertieren](#pdf-konvertieren)
+   * [Struktur](#struktur)
+   * [Ausführung](#ausführung)
+      * [Main](#main)
+      * [Main App](#main-app)
+   * [Daten](#daten)
+      * [Daten einholen](#daten-einholen)
+         * [Daten Formatieren](#daten-formatieren)
+   * [Dienstprogramme](#dienstprogramme)
+      * [Mail senden](#mail-senden)
+      * [Logging](#logging)
+      * [PDF konvertieren](#pdf-konvertieren)
 * [Projekt Reflexion](#projekt-reflexion)
 * [License](#license)
+
 <!-- TOC -->
 
 # Projektangaben
@@ -246,13 +248,13 @@ der [SendMail](#mail-senden) und [ConvertPDF](#pdf-konvertieren) Klassen verwend
 
 ```python
         def FormatData(self, data):
-    
-    
-        self.formatted_data += "<h1>Hier sind deine Krypto Informationen</h1>"
-    
-        for currency in data['data']:
-            self.formatted_data +=
-            f"""
+
+
+self.formatted_data += "<h1>Hier sind deine Krypto Informationen</h1>"
+
+for currency in data['data']:
+    self.formatted_data +=
+    f"""
             <table>
                 <tr>
                     <th>Name</th>
@@ -354,7 +356,7 @@ class SendMail:
             part.add_header('Content-Disposition', f'attachment; filename={filename}')
 
             msg.attach(part)
-        
+
         # send mail
         s.sendmail(msg['From'], msg['To'], msg.as_string())
         s.quit()
@@ -440,8 +442,8 @@ Wir wollten eine gute Projektstruktur haben und nicht alles in einem Skript vers
 Beispiel am [PyMacro Repository](https://github.com/LOUDO56/PyMacroRecord/tree/main/src) genommen. Dieses führt den
 gesamten Code mit einer Funktion aus, die wie in unserem Projekt in einem File namens "main" aufgerufen wird.
 
-Nach diesem Python Projekt haben wir bemerkt, dass Python eine recht simple und logische Programmiersprache. Die meiste
-Zeit haben wir unseren Code verstanden und nur selten mussten wir für Hilfe suchen.
+Nach diesem Python Projekt haben wir bemerkt, dass Python eine recht simple und logische Programmiersprache ist. Die
+meiste Zeit haben wir unseren Code verstanden und nur selten mussten wir für Hilfe suchen.
 
 # License
 
