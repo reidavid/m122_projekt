@@ -104,19 +104,19 @@ C:.
 |   tree.txt
 |   __init__.py
 |   
-+---assets
+\---assets
 |   |   css.css
 |   |   [LOGO]
 |   |   
 |   \---img
 |           KryptoInfo.png
 |           
-+---log
+\---log
 |       error.log
 |       log.log
 |       __init__.py
 |       
-+---marketinfo
+\---marketinfo
 |   |   __init__.py
 |   |   
 |   \---data
