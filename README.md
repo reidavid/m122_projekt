@@ -2,9 +2,34 @@
 
 ![CA Logo](src/assets/CA.png)
 
-# TOC
-
-[TOC]
+<!-- TOC -->
+* [CryptoAnalytics](#cryptoanalytics)
+* [Projektangaben](#projektangaben)
+  * [Auftraggeber](#auftraggeber)
+  * [Projektbeginn](#projektbeginn)
+  * [Projektende/-abgabe](#projektende-abgabe)
+  * [Beschreibung](#beschreibung)
+  * [Projektteam](#projektteam)
+  * [Annahmen und Beschränkungen](#annahmen-und-beschränkungen)
+  * [Terminvorgaben](#terminvorgaben)
+* [Dependencies](#dependencies)
+* [Features](#features)
+* [Showcase](#showcase)
+* [Code](#code)
+  * [Struktur](#struktur)
+  * [Ausführung](#ausführung)
+    * [Main](#main)
+    * [Main App](#main-app)
+  * [Daten](#daten)
+    * [Daten einholen](#daten-einholen)
+      * [Daten Formatieren](#daten-formatieren)
+  * [Dienstprogramme](#dienstprogramme)
+    * [Mail senden](#mail-senden)
+    * [Logging](#logging)
+    * [PDF konvertieren](#pdf-konvertieren)
+* [Projekt Reflexion](#projekt-reflexion)
+* [License](#license)
+<!-- TOC -->
 
 # Projektangaben
 
